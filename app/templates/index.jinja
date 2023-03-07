@@ -1,0 +1,13 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+    <h1>{{ pokedex_info }}</h1>
+    <p class="red-text">
+    <ul>
+        {% for pokemon in pokemon_list %}
+            <li>{{ pokemon.name }}</li>
+        {% endfor %}
+    </ul>
+    </p>
+{% endblock %}
+

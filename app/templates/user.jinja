@@ -1,0 +1,32 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+    <h2>My Pokemon Collection</h2>
+    {% if current_user.pokemon %}
+        <ul>
+        {% for pokemon in current_user.pokemon %}
+            <li>{{ pokemon.name }}</li>
+        <div class="row">
+        {% for pokemon in pokemon_list %}
+        <div class="col-md-4">
+            <div class="card">
+            <img src="{{ pokemon.sprite }}" class="card-img-top" alt="{{ pokemon.name }} Sprite">
+            <div class="card-body">
+                <h5 class="card-title">{{ pokemon.name }}</h5>
+                <p class="card-text">{{ pokemon.description }}</p>
+                <ul>
+                {% for stat in pokemon.stats %}
+                <li>{{ stat['stat']['name'] }}: {{ stat['base_stat'] }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any Pokemon in your collection yet!</p>
+    {% endif %}
+{% endblock %}

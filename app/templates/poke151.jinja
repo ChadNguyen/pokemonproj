@@ -1,0 +1,21 @@
+{% for pokemon in current_user.pokemon if loop.index <= 151 %}
+  <div class="col-md-4">
+    <div class="card">
+      <img src="{{ pokemon.sprite }}" class="card-img-top" alt="{{ pokemon.name }} Sprite">
+      <div class="card-body">
+        <h5 class="card-title">{{ pokemon.name }}</h5>
+        <p class="card-text">{{ pokemon.description }}</p>
+        <ul>
+          <li>Type: {{ pokemon.type }}</li>
+          <li>HP: {{ pokemon.hp }}</li>
+          <li>Attack: {{ pokemon.attack }}</li>
+          <li>Defense: {{ pokemon.defense }}</li>
+          <li>Special Attack: {{ pokemon.sp_attack }}</li>
+          <li>Special Defense: {{ pokemon.sp_defense }}</li>
+          <li>Speed: {{ pokemon.speed }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+

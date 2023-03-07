@@ -1,0 +1,14 @@
+body {
+    background-image: url('/static/css/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: red;
+  }
+  
+  h1 {
+    color: white;
+    text-align: center;
+  }
+
+ 
+  
