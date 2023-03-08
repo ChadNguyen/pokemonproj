@@ -1,21 +1,42 @@
-{% for pokemon in current_user.pokemon if loop.index <= 151 %}
-  <div class="col-md-4">
-    <div class="card">
-      <img src="{{ pokemon.sprite }}" class="card-img-top" alt="{{ pokemon.name }} Sprite">
-      <div class="card-body">
-        <h5 class="card-title">{{ pokemon.name }}</h5>
-        <p class="card-text">{{ pokemon.description }}</p>
-        <ul>
-          <li>Type: {{ pokemon.type }}</li>
-          <li>HP: {{ pokemon.hp }}</li>
-          <li>Attack: {{ pokemon.attack }}</li>
-          <li>Defense: {{ pokemon.defense }}</li>
-          <li>Special Attack: {{ pokemon.sp_attack }}</li>
-          <li>Special Defense: {{ pokemon.sp_defense }}</li>
-          <li>Speed: {{ pokemon.speed }}</li>
-        </ul>
+{% extends 'base.jinja' %}
+
+{% block content %}
+<h2>My Pokemon Collection</h2>
+{% if current_user.pokemon %}
+  <div class="row">
+    {% for pokemon in pokemon_list %}
+    <div class="col-md-4">
+      <div class="card">
+        <img src="{{ pokemon.sprite }}" class="card-img-top" alt="{{ pokemon.name }} Sprite">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title">{{ pokemon.name }}</h5>
+            <p class="card-text">{{ pokemon.description }}</p>
+            <ul class="list-unstyled">
+              <li>Type: {{ pokemon.type }}</li>
+              <li>HP: {{ pokemon.hp }}</li>
+              <li>Attack: {{ pokemon.attack }}</li>
+              <li>Defense: {{ pokemon.defense }}</li>
+              <li>Special Attack: {{ pokemon.sp_attack }}</li>
+              <li>Special Defense: {{ pokemon.sp_defense }}</li>
+              <li>Speed: {{ pokemon.speed }}</li>
+            </ul>
+          </div>
+          <div>
+            <button class="btn btn-primary">Add to Collection</button>
+          </div>
+        </div>
       </div>
     </div>
+    {% endfor %}
+
   </div>
-{% endfor %}
+{% else %}
+  <p>You don't have any Pokemon in your collection yet!</p>
+{% endif %}
+{% endblock %}
+
+
+
+
 

@@ -1,0 +1,29 @@
+{% extends 'base.jinja' %}
+
+<div id="header-container" class="ui inverted segment">
+    <div class="ui inverted secondary menu">
+       <h1 id="header-text">Pokemon</h1>
+    </div>
+</div>
+<div id="container">
+    <div id="poke-container" class="ui cards">
+        <div>
+            <h5 class="card-title">{{ pokemon.name }}</h5>
+            <p class="card-text">{{ pokemon.description }}</p>
+            <ul class="list-unstyled">
+              <li>Type: {{ pokemon.type }}</li>
+              <li>HP: {{ pokemon.hp }}</li>
+              <li>Attack: {{ pokemon.attack }}</li>
+              <li>Defense: {{ pokemon.defense }}</li>
+              <li>Special Attack: {{ pokemon.sp_attack }}</li>
+              <li>Special Defense: {{ pokemon.sp_defense }}</li>
+              <li>Speed: {{ pokemon.speed }}</li>
+            </ul>
+          </div>
+        <button id="generate-pokemon" class="ui secondary button">Generate Pokemon</button>
+    </div>
+</div>
+
+<div id="delete-container">
+    <button id="delete-btn" class="ui red button">Delete</button>
+</div>

@@ -8,6 +8,46 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
+@app.route('/poke151')
+def poke151():
+    response = requests.get('https://pokeapi.co/api/v2/pokemon?limit=151')
+    pokemon_list = response.json()['results']
+    pokemon_data_list = []  # initialize the list here
+    for pokemon in pokemon_list:
+        pokemon_data = requests.get(pokemon['url']).json()
+        sprite = pokemon_data['sprites']['front_default']
+        name = pokemon_data['name'].capitalize()
+        description = "No description available."
+        if 'flavor_text_entries' in pokemon_data['species']:
+            for entry in pokemon_data['species']['flavor_text_entries']:
+                if entry['language']['name'] == 'en':
+                    description = entry['flavor_text']
+                    break
+        type = pokemon_data['types'][0]['type']['name'].capitalize()
+        hp = pokemon_data['stats'][0]['base_stat']
+        attack = pokemon_data['stats'][1]['base_stat']
+        defense = pokemon_data['stats'][2]['base_stat']
+        sp_attack = pokemon_data['stats'][3]['base_stat']
+        sp_defense = pokemon_data['stats'][4]['base_stat']
+        speed = pokemon_data['stats'][5]['base_stat']
+    
+        pokemon_dict = {
+            'sprite': sprite,
+            'name': name,
+            'description': description,
+            'type': type,
+            'hp': hp,
+            'attack': attack,
+            'defense': defense,
+            'sp_attack': sp_attack,
+            'sp_defense': sp_defense,
+            'speed': speed
+        }
+        
+        pokemon_data_list.append(pokemon_dict)
+    return render_template('poke151.jinja', pokemon_list=pokemon_data_list)
+
+
 
 @app.route('/pokemon')
 def get_pokemon():
